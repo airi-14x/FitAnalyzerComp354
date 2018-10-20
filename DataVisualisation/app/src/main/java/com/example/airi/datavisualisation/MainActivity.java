@@ -1,4 +1,4 @@
-package fall2018comp354groupq.fitnessanalyzer;
+package com.example.airi.datavisualisation;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         GraphView graph = (GraphView) findViewById(R.id.graph);
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
                 new DataPoint(0, 1),
@@ -23,6 +25,5 @@ public class MainActivity extends AppCompatActivity {
                 new DataPoint(4, 6)
         });
         graph.addSeries(series);
-
     }
 }

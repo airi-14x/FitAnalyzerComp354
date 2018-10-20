@@ -3,8 +3,8 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "fall2018comp354groupq.fitnessanalyzer"
-        minSdkVersion 17
+        applicationId "com.example.airi.datavisualisation"
+        minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -25,9 +25,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.jjoe64:graphview:4.2.2'
-
 }
