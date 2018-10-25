@@ -6,8 +6,14 @@ import android.os.Bundle;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.PointsGraphSeries;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    ArrayList<String> x_axis=new ArrayList<String>();
+    ArrayList<String> y_axis=new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         */
 
 
+        /*
         // Zooming in and out //
         // first series is a line
         DataPoint[] points = new DataPoint[100];
@@ -88,8 +95,67 @@ public class MainActivity extends AppCompatActivity {
         graph.getViewport().setScalableY(true);
 
         graph.addSeries(series);
+        */
+
+        // Testing Dynamics Values //
+        x_axis=new ArrayList<String>();
+        y_axis=new ArrayList<String>();
 
 
+        // X must be ascending order //
+        x_axis.add("10");
+        y_axis.add("20");
+
+        x_axis.add("22");
+        y_axis.add("32");
+
+        x_axis.add("22");
+        y_axis.add("12");
+
+        x_axis.add("33");
+        y_axis.add("43");
+
+        x_axis.add("42");
+        y_axis.add("30");
+
+
+        GraphView graph;
+
+        LineGraphSeries<DataPoint> series;
+        //PointsGraphSeries<DataPoint> series;       //an Object of the PointsGraphSeries for plotting scatter graphs
+        graph = (GraphView) findViewById(R.id.graph1);
+        series = new LineGraphSeries<>(data_points());
+        //series= new PointsGraphSeries<>(data_points());   //initializing/defining series to get the data from the method 'data()'
+        graph.addSeries(series);                   //adding the series to the GraphView
+        //series.setShape(PointsGraphSeries.Shape.POINT);
+        //series.setSize(5);
+
+        //graph.getViewport().setYAxisBoundsManual(true);
+        graph.getViewport().setMinY(0);
+        graph.getViewport().setMaxY(20);
+
+        //graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setMinX(0);
+        graph.getViewport().setMaxX(20);
+
+        //graph.getViewport().setScrollable(true);
+        graph.getViewport().setScalable(true);
+        graph.getViewport().setScalableY(true);
+        //graph.getViewport().setScrollableY(true);
 
     }
+
+    // Setting Data //
+    public DataPoint[] data_points(){
+        int n = x_axis.size();
+
+        DataPoint[] values = new DataPoint[n];
+        for(int i=0;i<n;i++){
+            DataPoint v = new DataPoint(Double.parseDouble(x_axis.get(i)),Double.parseDouble(y_axis.get(i)));
+            values[i] = v;
+        }
+        return values;
+
+    }
+
 }
