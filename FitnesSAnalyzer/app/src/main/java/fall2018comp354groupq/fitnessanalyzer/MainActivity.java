@@ -10,28 +10,20 @@ import com.jjoe64.graphview.series.PointsGraphSeries;
 
 import java.util.ArrayList;
 
+import DomainClasses.Graphing;
+
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<String> x_axis=new ArrayList<String>();
-    ArrayList<String> y_axis=new ArrayList<String>();
+    //ArrayList<String> x_axis=new ArrayList<String>();
+    //ArrayList<String> y_axis=new ArrayList<String>();
+
+    ArrayList<Integer> x_axis=new ArrayList<Integer>();
+    ArrayList<Integer> y_axis=new ArrayList<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        /*
-        GraphView graph = (GraphView) findViewById(R.id.graph);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
-        });
-        graph.addSeries(series);
-        */
 
         /*
         // generate Dates
@@ -97,12 +89,10 @@ public class MainActivity extends AppCompatActivity {
         graph.addSeries(series);
         */
 
-        // Testing Dynamics Values //
-        x_axis=new ArrayList<String>();
-        y_axis=new ArrayList<String>();
+        Graphing new_graph = new Graphing(this);
 
-
-        // X must be ascending order //
+        /*
+        // X must be ascending order  --> String//
         x_axis.add("10");
         y_axis.add("20");
 
@@ -117,45 +107,31 @@ public class MainActivity extends AppCompatActivity {
 
         x_axis.add("42");
         y_axis.add("30");
+        */
 
+        // X must be ascending order  --> Integer --> Using Valueof//
+        x_axis.add(10);
+        y_axis.add(20);
 
-        GraphView graph;
+        x_axis.add(22);
+        y_axis.add(32);
 
-        LineGraphSeries<DataPoint> series;
-        //PointsGraphSeries<DataPoint> series;       //an Object of the PointsGraphSeries for plotting scatter graphs
-        graph = (GraphView) findViewById(R.id.graph1);
-        series = new LineGraphSeries<>(data_points());
-        //series= new PointsGraphSeries<>(data_points());   //initializing/defining series to get the data from the method 'data()'
-        graph.addSeries(series);                   //adding the series to the GraphView
-        //series.setShape(PointsGraphSeries.Shape.POINT);
-        //series.setSize(5);
+        x_axis.add(22);
+        y_axis.add(12);
 
-        //graph.getViewport().setYAxisBoundsManual(true);
-        graph.getViewport().setMinY(0);
-        graph.getViewport().setMaxY(20);
+        x_axis.add(33);
+        y_axis.add(43);
 
-        //graph.getViewport().setXAxisBoundsManual(true);
-        graph.getViewport().setMinX(0);
-        graph.getViewport().setMaxX(20);
+        x_axis.add(42);
+        y_axis.add(30);
 
-        //graph.getViewport().setScrollable(true);
-        graph.getViewport().setScalable(true);
-        graph.getViewport().setScalableY(true);
-        //graph.getViewport().setScrollableY(true);
+        new_graph.select_graph(1);
+        new_graph.setX_axis(x_axis);
+        new_graph.setY_axis(y_axis);
+        new_graph.set_series();
 
     }
 
-    // Setting Data //
-    public DataPoint[] data_points(){
-        int n = x_axis.size();
 
-        DataPoint[] values = new DataPoint[n];
-        for(int i=0;i<n;i++){
-            DataPoint v = new DataPoint(Double.parseDouble(x_axis.get(i)),Double.parseDouble(y_axis.get(i)));
-            values[i] = v;
-        }
-        return values;
-
-    }
 
 }
