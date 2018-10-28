@@ -4,11 +4,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.PointsGraphSeries;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import DomainClasses.Graphing;
 
@@ -20,12 +23,15 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Integer> x_axis=new ArrayList<Integer>();
     ArrayList<Integer> y_axis=new ArrayList<Integer>();
 
+    String time1 = "2018-10-03T23:00:00.000z";
+    String time2 = "2018-10-04T9:35:00.000z";
+    String time3 = "2018-10-05T17:35:00.000z";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*
+
         // generate Dates
         Calendar calendar = Calendar.getInstance();
         Date d1 = calendar.getTime();
@@ -34,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         calendar.add(Calendar.DATE, 1);
         Date d3 = calendar.getTime();
 
-        GraphView graph = (GraphView) findViewById(R.id.graph);
+        GraphView graph = (GraphView) findViewById(R.id.graph1);
 
         // you can directly pass Date objects to DataPoint-Constructor
         // this will convert the Date to double via Date#getTime()
@@ -59,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
     // is not necessary
         graph.getGridLabelRenderer().setHumanRounding(false);
 
-        */
 
 
         /*
@@ -89,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         graph.addSeries(series);
         */
 
-        Graphing new_graph = new Graphing(this);
+        //Graphing new_graph = new Graphing(this);
 
         /*
         // X must be ascending order  --> String//
@@ -109,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         y_axis.add("30");
         */
 
+        /*
         // X must be ascending order  --> Integer --> Using Valueof//
         x_axis.add(10);
         y_axis.add(20);
@@ -129,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
         new_graph.setX_axis(x_axis);
         new_graph.setY_axis(y_axis);
         new_graph.set_series();
+        */
 
     }
 

@@ -26,7 +26,7 @@ public class Graphing {
 
     // USER chooses which graph to display //
     public void select_graph(int choice){
-
+        // All graph one but different labels for x and y axis to set//
         switch(choice){
 
             case 1:
@@ -34,7 +34,7 @@ public class Graphing {
                 break;
 
             case 2:
-                graph = (GraphView)this.activity.findViewById(R.id.graph2);
+                //graph = (GraphView)this.activity.findViewById(R.id.graph2);
                 break;
 
            // case 3:
@@ -45,6 +45,7 @@ public class Graphing {
     }
 
 
+    // Need to be ascending order or it will crash //
     public void setX_axis(List x_data_list){
         for(int i = 0; i < x_data_list.size(); i++) {
             x_axis.add(String.valueOf(x_data_list.get(i)));

@@ -12,15 +12,15 @@
 
         <com.jjoe64.graphview.GraphView
             android:layout_width="match_parent"
-            android:layout_height="200dip"
+            android:layout_height="300dip"
             android:id="@+id/graph1" />
 
-        <com.jjoe64.graphview.GraphView
+        <!--<com.jjoe64.graphview.GraphView
             android:layout_width="match_parent"
             android:layout_below="@+id/graph1"
             android:layout_height="200dip"
             android:id="@+id/graph2" />
-
+        -->
     </RelativeLayout>
 
 
