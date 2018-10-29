@@ -4,11 +4,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.PointsGraphSeries;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,18 +23,20 @@ public class MainActivity extends AppCompatActivity {
     //ArrayList<String> x_axis=new ArrayList<String>();
     //ArrayList<String> y_axis=new ArrayList<String>();
 
-    ArrayList<Integer> x_axis=new ArrayList<Integer>();
+    //ArrayList<Integer> x_axis=new ArrayList<Integer>();
     ArrayList<Integer> y_axis=new ArrayList<Integer>();
 
-    String time1 = "2018-10-03T23:00:00.000z";
-    String time2 = "2018-10-04T9:35:00.000z";
-    String time3 = "2018-10-05T17:35:00.000z";
+    ArrayList<Date> x_axis = new ArrayList<Date>();
+
+    String time1 = "2018-10-03T09:35:00.000Z";
+    String time2 = "2018-10-03T23:00:00.000Z";
+    String time3 = "2018-10-05T17:35:00.000Z";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        /*
         // generate Dates
         Calendar calendar = Calendar.getInstance();
         Date d1 = calendar.getTime();
@@ -39,31 +44,54 @@ public class MainActivity extends AppCompatActivity {
         Date d2 = calendar.getTime();
         calendar.add(Calendar.DATE, 1);
         Date d3 = calendar.getTime();
+        */
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+
+        Date dt1 = null;
+        Date dt2 = null;
+        Date dt3 = null;
+        try {
+            dt1 = sdf.parse(time1);
+            dt2 = sdf.parse(time2);
+            dt3 = sdf.parse(time3);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+       // x_axis.add(dt1);
+        // y_axis.add(30);
 
         GraphView graph = (GraphView) findViewById(R.id.graph1);
 
         // you can directly pass Date objects to DataPoint-Constructor
         // this will convert the Date to double via Date#getTime()
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(d1, 1),
-                new DataPoint(d2, 5),
-                new DataPoint(d3, 3)
+                new DataPoint(dt1, 1),
+                new DataPoint(dt2, 5),
+                new DataPoint(dt3, 3)
         });
 
         graph.addSeries(series);
 
     // set date label formatter
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getApplicationContext()));
-        graph.getGridLabelRenderer().setNumHorizontalLabels(4); // only 4 because of the space
+        graph.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
 
     // set manual x bounds to have nice steps
-        graph.getViewport().setMinX(d1.getTime());
-        graph.getViewport().setMaxX(d3.getTime());
+        //graph.getViewport().setMinX(d1.getTime());
+        //graph.getViewport().setMaxX(d3.getTime());
         graph.getViewport().setXAxisBoundsManual(true);
 
     // as we use dates as labels, the human rounding to nice readable numbers
     // is not necessary
         graph.getGridLabelRenderer().setHumanRounding(false);
+        graph.setTitle("Title1");
+
+        GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
+        gridLabel.setHorizontalAxisTitle("X Axis Title");
 
 
 
@@ -94,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
         graph.addSeries(series);
         */
 
+
         //Graphing new_graph = new Graphing(this);
 
         /*
@@ -112,6 +141,26 @@ public class MainActivity extends AppCompatActivity {
 
         x_axis.add("42");
         y_axis.add("30");
+        */
+
+        /*
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+
+        Date dt1 = null;
+        Date dt2;
+        Date dt3;
+        try {
+            dt1 = sdf.parse(time1);
+            dt2 = sdf.parse(time2);
+            dt3 = sdf.parse(time3);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        x_axis.add(dt1);
+        y_axis.add(30);
         */
 
         /*
