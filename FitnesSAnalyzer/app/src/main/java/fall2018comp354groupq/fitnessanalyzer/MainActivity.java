@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import DomainClasses.Graphing;
 
@@ -23,29 +24,31 @@ public class MainActivity extends AppCompatActivity {
     //ArrayList<String> x_axis=new ArrayList<String>();
     //ArrayList<String> y_axis=new ArrayList<String>();
 
-    //ArrayList<Integer> x_axis=new ArrayList<Integer>();
-    ArrayList<Integer> y_axis=new ArrayList<Integer>();
+
+    //ArrayList<Integer> y_axis=new ArrayList<Integer>();
+    ArrayList<Double> y_axis=new ArrayList<Double>();
 
     ArrayList<Date> x_axis = new ArrayList<Date>();
+    List<Date> x_data_list = x_axis;
+    //List<String> y_data_list;
+
+    ArrayList<Date> x_axis_new = new ArrayList<Date>();
+    LineGraphSeries<DataPoint> series;
 
     String time1 = "2018-10-03T09:35:00.000Z";
     String time2 = "2018-10-03T23:00:00.000Z";
-    String time3 = "2018-10-05T17:35:00.000Z";
+    String time3 = "2018-10-04T14:35:00.000Z";
+    String time4 = "2018-10-05T17:35:00.000Z";
+    String time5 = "2018-10-06T19:35:00.000Z";
+
+
+    DataPoint[] values;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         /*
-        // generate Dates
-        Calendar calendar = Calendar.getInstance();
-        Date d1 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d2 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d3 = calendar.getTime();
-        */
-
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
         Date dt1 = null;
@@ -60,20 +63,46 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        x_axis.add(dt1);
+        y_axis.add(40);
+        x_axis.add(dt2);
+        y_axis.add(20);
+        x_axis.add(dt3);
+        y_axis.add(40);
 
-       // x_axis.add(dt1);
-        // y_axis.add(30);
+        for(int i = 0; i < x_data_list.size(); i++)
+        {
+            Date temp = (Date)x_data_list.get(i);
+            x_axis_new.add(temp);
+        }
+
+        */
+        ///
+        // Setting series //
+
+        /*
+        int n = x_axis.size();
+        values = new DataPoint[n];
+
+        for(int i=0;i<n;i++){
+            //DataPoint v = new DataPoint(Double.parseDouble(x_axis.get(i)),Double.parseDouble(y_axis.get(i)));
+            DataPoint v = new DataPoint((x_axis_new.get(i)),y_axis.get(i));
+            values[i] = v;
+        }
+
+        series = new LineGraphSeries<DataPoint>(values);
 
         GraphView graph = (GraphView) findViewById(R.id.graph1);
 
         // you can directly pass Date objects to DataPoint-Constructor
         // this will convert the Date to double via Date#getTime()
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
+       /* LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
                 new DataPoint(dt1, 1),
                 new DataPoint(dt2, 5),
                 new DataPoint(dt3, 3)
-        });
+        });*/
 
+        /*
         graph.addSeries(series);
 
     // set date label formatter
@@ -92,8 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
         GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
         gridLabel.setHorizontalAxisTitle("X Axis Title");
-
-
+        
 
         /*
         // Zooming in and out //
@@ -123,36 +151,23 @@ public class MainActivity extends AppCompatActivity {
         */
 
 
-        //Graphing new_graph = new Graphing(this);
 
-        /*
-        // X must be ascending order  --> String//
-        x_axis.add("10");
-        y_axis.add("20");
+        Graphing new_graph = new Graphing(this);
 
-        x_axis.add("22");
-        y_axis.add("32");
 
-        x_axis.add("22");
-        y_axis.add("12");
-
-        x_axis.add("33");
-        y_axis.add("43");
-
-        x_axis.add("42");
-        y_axis.add("30");
-        */
-
-        /*
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
         Date dt1 = null;
-        Date dt2;
-        Date dt3;
+        Date dt2 = null;
+        Date dt3 = null;
+        Date dt4 = null;
+        Date dt5 = null;
         try {
             dt1 = sdf.parse(time1);
             dt2 = sdf.parse(time2);
             dt3 = sdf.parse(time3);
+            dt4 = sdf.parse(time4);
+            dt5 = sdf.parse(time5);
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -160,31 +175,30 @@ public class MainActivity extends AppCompatActivity {
 
 
         x_axis.add(dt1);
-        y_axis.add(30);
-        */
+        //y_axis.add(30);
+        y_axis.add(30.4);
 
-        /*
-        // X must be ascending order  --> Integer --> Using Valueof//
-        x_axis.add(10);
-        y_axis.add(20);
+        x_axis.add(dt2);
+        //y_axis.add(20);
+        y_axis.add(34.3);
 
-        x_axis.add(22);
-        y_axis.add(32);
+        x_axis.add(dt3);
+        //y_axis.add(40);
+        y_axis.add(44.3);
 
-        x_axis.add(22);
-        y_axis.add(12);
+        x_axis.add(dt4);
+        //y_axis.add(10);
+        y_axis.add(14.3);
 
-        x_axis.add(33);
-        y_axis.add(43);
+        x_axis.add(dt5);
+        //y_axis.add(50);
+        y_axis.add(54.3);
 
-        x_axis.add(42);
-        y_axis.add(30);
-
-        new_graph.select_graph(1);
+        new_graph.select_graph(2);
         new_graph.setX_axis(x_axis);
-        new_graph.setY_axis(y_axis);
+        new_graph.setY_axis_Double(y_axis);
         new_graph.set_series();
-        */
+
 
     }
 
