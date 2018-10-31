@@ -29,6 +29,7 @@
 
         <RadioButton
             android:id="@+id/graph1_radio"
+            android:onClick="select_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Graph 1: Start Time vs. Duration"
@@ -37,6 +38,7 @@
 
         <RadioButton
             android:id="@+id/graph2_radio"
+            android:onClick="select_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Graph 2: Start Time vs. Avg. Speed "
@@ -45,6 +47,7 @@
 
         <RadioButton
             android:id="@+id/graph3_radio"
+            android:onClick="select_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Graph 3: Distance vs Avg. Speed"

@@ -1,6 +1,9 @@
 package DomainClasses;
 
 import android.app.Activity;
+import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
@@ -114,7 +117,14 @@ public class Graphing {
             values[i] = v;
         }
 
+        //DataPoint[] test_val = new DataPoint[1];
+        //test_val[0] = new DataPoint((x_axis.get(0)),(y_axis_double.get(0)));
+
+
         // Completed setting the values for series //
+        //Log.d("test", "Here" + n);
+        //Log.d("test2", "Value" + values);
+        //series = new LineGraphSeries<DataPoint>(test_val);
         series = new LineGraphSeries<DataPoint>(values);
         setGraph(graph);
 
