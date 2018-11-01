@@ -29,7 +29,7 @@ public class Graphing {
     ArrayList<Integer> y_axis=new ArrayList<Integer>();
     ArrayList<Double> y_axis_double=new ArrayList<Double>();
     GraphView graph; // To display graph //
-    LineGraphSeries<DataPoint> series; // Actual Data Series to plot //
+    LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(); // Actual Data Series to plot //
     DataPoint[] values; // To set the data points //
 
     String main_title;
@@ -135,18 +135,16 @@ public class Graphing {
                 v = new DataPoint((x_axis.get(i)),(y_axis.get(i)));
             }
             values[i] = v;
+            series.appendData(v,false,n,true);
         }
-
-        //DataPoint[] test_val = new DataPoint[1];
-        //test_val[0] = new DataPoint((x_axis.get(0)),(y_axis_double.get(0)));
 
 
         // Completed setting the values for series //
         //Log.d("test", "Here" + n);
-        //Log.d("test2", "Value" + values);
+        Log.d("test2", "Value" + values);
         //series = new LineGraphSeries<DataPoint>(test_val);
-        series = new LineGraphSeries<DataPoint>(values);
-        setGraph(graph);
+        //series = new LineGraphSeries<DataPoint>(values);
+        //setGraph(graph);
 
     }
 
@@ -154,7 +152,11 @@ public class Graphing {
         return series;
     }
 
-    public void setGraph(GraphView graph) {
+    public GraphView getGraph(){
+        return graph;
+    }
+
+    public void setGraph() {
         graph.addSeries(series);
 
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(activity.getApplicationContext()));
