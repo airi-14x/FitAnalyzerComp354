@@ -10,6 +10,9 @@ import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +23,8 @@ public class Graphing {
 
     public Activity activity; // Calling from Main Activity Class //
     //ArrayList<String> x_axis=new ArrayList<String>();
+
+    ArrayList<Date> current_date_values = new ArrayList<Date>(); //
     ArrayList<Date> x_axis = new ArrayList<Date>();
     ArrayList<Integer> y_axis=new ArrayList<Integer>();
     ArrayList<Double> y_axis_double=new ArrayList<Double>();
@@ -68,21 +73,36 @@ public class Graphing {
 
     }
 
+    // List of Strings with date format //
+    public void str_format_date(List<String> string_dates){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+
+        Date new_date = null;
+        for(int i = 0; i < string_dates.size(); i++)
+        {
+            try{
+                new_date = sdf.parse(string_dates.get(i));
+                current_date_values.add(new_date);
+                //x_axis.add(new_date);
+            }
+            catch (ParseException e) {
+                Log.e("ERROR", "Here");
+                e.printStackTrace();
+            }
+        }
+       setX_axis(current_date_values);
+    }
+
 
     // Need to be ascending order or it will crash //
     public void setX_axis(List<Date> x_data_list){
         for(int i = 0; i < x_data_list.size(); i++) {
-            //x_axis.add(String.valueOf(x_data_list.get(i)));
-
-            //long date_unix;
             Date temp = (Date)x_data_list.get(i);
-            //date_unix = temp.getTime();
-            //x_axis.add((Date)x_data_list.get(i));
             x_axis.add(temp);
         }
     }
 
-    public void setY_axis(List<Integer> y_data_list){
+    public void setY_axis_Integer(List<Integer> y_data_list){
         for(int i = 0; i < y_data_list.size(); i++){
             //y_axis.add(String.valueOf(y_data_list.get(i)));
             y_axis.add(y_data_list.get(i));
