@@ -26,6 +26,8 @@ public class Graphing {
 
     ArrayList<Date> current_date_values = new ArrayList<Date>(); //
     ArrayList<Date> x_axis = new ArrayList<Date>();
+
+    ArrayList<Double> x_axis_double = new ArrayList<Double>();
     ArrayList<Integer> y_axis=new ArrayList<Integer>();
     ArrayList<Double> y_axis_double=new ArrayList<Double>();
     GraphView graph; // To display graph //
@@ -78,6 +80,8 @@ public class Graphing {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
         Date new_date = null;
+        clearX();
+        current_date_values.clear();
         for(int i = 0; i < string_dates.size(); i++)
         {
             try{
@@ -102,7 +106,12 @@ public class Graphing {
         }
     }
 
+    public void setX_axis_double(List<Double> x_axis_double) {
+        this.x_axis_double = (ArrayList) x_axis_double;
+    }
+
     public void setY_axis_Integer(List<Integer> y_data_list){
+        clearY();
         for(int i = 0; i < y_data_list.size(); i++){
             //y_axis.add(String.valueOf(y_data_list.get(i)));
             y_axis.add(y_data_list.get(i));
@@ -111,6 +120,7 @@ public class Graphing {
     }
 
     public void setY_axis_Double(List<Double> y_data_list){
+       clearY();
         for(int i = 0; i < y_data_list.size(); i++){
             //y_axis.add(String.valueOf(y_data_list.get(i)));
             y_axis_double.add(y_data_list.get(i));
@@ -118,10 +128,21 @@ public class Graphing {
 
     }
 
+    public void clearX(){
+        x_axis.clear();
+        x_axis_double.clear();
+    }
+
+    public void clearY(){
+        y_axis.clear();
+        y_axis_double.clear();
+    }
+
 
     public void set_series(){
         int n = x_axis.size();
 
+        Log.d("Test1","Value " + n);
         values = new DataPoint[n];
         for(int i=0;i<n;i++){
             //DataPoint v = new DataPoint(Double.parseDouble(x_axis.get(i)),Double.parseDouble(y_axis.get(i)));
@@ -158,8 +179,10 @@ public class Graphing {
 
     public void setGraph() {
         graph.addSeries(series);
+        Log.d("test3", "HERE!");
 
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(activity.getApplicationContext()));
+        Log.d("test4", "HERE!");
         //graph.getViewport().setMinX(x_axis.get(0).getTime());
         //graph.getViewport().setMaxX(x_axis.get(2).getTime());
         //graph.getGridLabelRenderer().setNumHorizontalLabels(5);

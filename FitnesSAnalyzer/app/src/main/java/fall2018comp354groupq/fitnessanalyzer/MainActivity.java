@@ -7,18 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.RadioButton;
-import android.widget.Toast;
 
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GridLabelRenderer;
-import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
-import com.jjoe64.graphview.series.PointsGraphSeries;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     static ArrayList<Double> y_axis = new ArrayList<Double>();
 
     static ArrayList<Date> x_axis = new ArrayList<Date>();
-    List<Date> x_data_list = x_axis;
+    static ArrayList<Double> x_axis_double = new ArrayList<Double>();
 
     String time1 = "2018-10-03T09:35:00.000Z";
     String time2 = "2018-10-03T23:00:00.000Z";
@@ -57,23 +47,23 @@ public class MainActivity extends AppCompatActivity {
         // TESTING SCENARIO: GRAPH #1 //
         // CREATE A GRAPH via Constructor + Set Labels //
         //new_graph = new Graphing(this);
-        new_graph.select_graph(1);
+        //new_graph.select_graph(1);
 
         // SETTING X-AXIS: String List via str_format_date() //
-        time_list.add(time1);
-        time_list.add(time2);
-        time_list.add(time3);
-        time_list.add(time4);
-        time_list.add(time5);
-        new_graph.str_format_date(time_list);
+        //time_list.add(time1);
+        //time_list.add(time2);
+        //time_list.add(time3);
+        //time_list.add(time4);
+        //time_list.add(time5);
+        //new_graph.str_format_date(time_list);
 
         // SETTING Y-AXIS: Integer List //
-        y_axis_int.add(30);
-        y_axis_int.add(20);
-        y_axis_int.add(40);
-        y_axis_int.add(10);
-        y_axis_int.add(50);
-        new_graph.setY_axis_Integer(y_axis_int);
+        //y_axis_int.add(30);
+        //y_axis_int.add(20);
+        //y_axis_int.add(40);
+        //y_axis_int.add(10);
+        //y_axis_int.add(50);
+        //new_graph.setY_axis_Integer(y_axis_int);
 
 
         // SET OTHER Y-AXIS //
@@ -84,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
         //y_axis.add(54.3);
 
         // DISPLAY GRAPH via set_series() //
-        new_graph.set_series();
-        new_graph.setGraph();
+        //new_graph.set_series();
+        //new_graph.setGraph();
 
 
         /*
@@ -129,25 +119,48 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /*private class GraphingTask extends AsyncTask<String,Integer,Graphing>{
-
-        protected void onPreExecute(){
-        }
-
+    private class GraphingTask extends AsyncTask<String,Graphing,String>{
 
         @Override
-        //protected Graphing doInBackground(String... strings) {
-
-
+        protected String doInBackground(String... strings) {
+            Log.d("test1", "Value1");
+            //time_list.add(time1);
+            //time_list.add(time2);
+            //time_list.add(time3);
+            //time_list.add(time4);
+            //time_list.add(time5);
+            //y_axis_int.add(30);
+            //y_axis_int.add(20);
+            //y_axis_int.add(40);
+            //y_axis_int.add(10);
+            //y_axis_int.add(50);
+            //new_graph.str_format_date(time_list);
+            //new_graph.setY_axis_Integer(y_axis_int);
+            new_graph.set_series();
+            //publishProgress(new_graph);
+            //new_graph.setGraph();
+            Log.d("test2", "Value2");
+            return "Executed";
         }
-    }*/
+
+        @Override
+        protected void onProgressUpdate(Graphing... values) {
+            //new_graph.setGraph();
+        }
+
+        protected void onPostExecute(String display_graph)
+        {
+            //new_graph.set_series();
+            new_graph.setGraph();
+        }
+
+
+
+    }
 
 
     public void select_button(View v) {
 
-        //Context context = getApplicationContext();
-        //int duration = Toast.LENGTH_LONG;
-        //new_graph = create_Graph(new_graph);
         switch (v.getId()) {
 
             case R.id.graph1_radio:
@@ -165,12 +178,13 @@ public class MainActivity extends AppCompatActivity {
                 y_axis_int.add(10);
                 y_axis_int.add(50);
                 new_graph.setY_axis_Integer(y_axis_int);
-                //Log.d("test1", "Value" + time_list.get(0));
-                //Log.d("test2", "Value" + y_axis_int.get(0));
-                new_graph.set_series();
 
-                //new GraphingTask().execute(new_graph);
-                new_graph.setGraph();
+                Log.d("test1", "Value" + time_list.get(0));
+                Log.d("test2", "Value" + y_axis_int.get(0));
+                //new GraphingTask().execute("Currently graphing..");
+                //new_graph.set_series();
+                //new_graph.setGraph();
+                displaying_graph();
                 time_list.clear();
                 break;
 
@@ -189,8 +203,12 @@ public class MainActivity extends AppCompatActivity {
                 y_axis.add(14.3);
                 y_axis.add(54.3);
                 new_graph.setY_axis_Double(y_axis);
-                new_graph.set_series();
-                new_graph.setGraph();
+                Log.d("test1", "Value" + time_list.get(0));
+                Log.d("test2", "Value" + y_axis.get(0));
+                //new GraphingTask().execute("Currently graphing..");
+                displaying_graph();
+                //new_graph.set_series();
+                //new_graph.setGraph();
                 time_list.clear();
                 break;
 
@@ -199,7 +217,33 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    }
 
+    private void displaying_graph(){
+        new Thread(){
+
+            public void run(){
+                //new_graph.set_series();
+                //new_graph.setGraph();
+
+                try {
+                    new_graph.set_series();
+                    new_graph.setGraph();
+                    // code runs in a thread
+                    /*runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            new_graph.set_series();
+                            new_graph.setGraph();
+                        }
+                    });*/
+                } catch (final Exception ex) {
+                    Log.i("---","Exception in thread");
+                }
+
+            }
+
+        }.start();
     }
 
 }
