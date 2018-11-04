@@ -1,7 +1,5 @@
 package fall2018comp354groupq.fitnessanalyzer;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,10 +8,14 @@ import android.view.View;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
-import java.util.List;
 
 import DomainClasses.Graphing;
+import DomainClasses.myPair;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,9 +32,11 @@ public class MainActivity extends AppCompatActivity {
     String time5 = "2018-10-06T19:35:00.000Z";
 
     static ArrayList<String> time_list = new ArrayList<String>();
-
+    static ArrayList<myPair> unsorted_list = new ArrayList<myPair>();
 
     static Graphing new_graph;
+
+    boolean isPair = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private class GraphingTask extends AsyncTask<String,Graphing,String>{
+    static private class GraphingTask extends AsyncTask<String,Graphing,String>{
 
         @Override
         protected String doInBackground(String... strings) {
@@ -213,6 +217,47 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.graph3_radio:
+                x_axis_double.clear();
+                y_axis.clear();
+                isPair = true;
+                new_graph.select_graph(3);
+                x_axis_double.add(10.4337);
+                x_axis_double.add(2.4567);
+                x_axis_double.add(1.3543);
+                x_axis_double.add(11.5314);
+                x_axis_double.add(12.1135);
+
+                y_axis.add(8.1456);
+                y_axis.add(3.1541);
+                y_axis.add(1.5731);
+                y_axis.add(4.5413);
+                y_axis.add(6.7540);
+
+                for(int i = 0; i < x_axis_double.size(); i++)
+                {
+                    myPair new_pair;
+                    new_pair = new myPair(x_axis_double.get(i),y_axis.get(i));
+                    unsorted_list.add(new_pair);
+                    Log.d("Test3", "Value" + unsorted_list.get(i).getX());
+                }
+
+                Comparator<myPair> comparator = new Comparator<myPair>() {
+                    @Override
+                    public int compare(myPair myPair, myPair t1) {
+                        return myPair.getX().compareTo(t1.getX());
+                    }
+                };
+
+                Collections.sort(unsorted_list,comparator);
+
+                for(int i = 0; i < x_axis_double.size(); i++)
+                {
+                    Log.d("Test4.1", "Value" + unsorted_list.get(i).getX());
+                    Log.d("Test4.2", "Value" + unsorted_list.get(i).getY());
+                }
+
+                new_graph.set_series_myPair(unsorted_list);
+                displaying_graph();
                 break;
 
         }
@@ -227,16 +272,16 @@ public class MainActivity extends AppCompatActivity {
                 //new_graph.setGraph();
 
                 try {
-                    new_graph.set_series();
-                    new_graph.setGraph();
-                    // code runs in a thread
-                    /*runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            new_graph.set_series();
-                            new_graph.setGraph();
-                        }
-                    });*/
+                    if (isPair)
+                    {
+                        new_graph.setGraphPair();
+                        isPair = false;
+                    }
+                    else{
+                        new_graph.set_series();
+                        new_graph.setGraph();
+                    }
+
                 } catch (final Exception ex) {
                     Log.i("---","Exception in thread");
                 }

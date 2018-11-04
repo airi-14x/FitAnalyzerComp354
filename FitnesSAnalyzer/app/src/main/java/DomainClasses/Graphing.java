@@ -40,6 +40,7 @@ public class Graphing {
 
     boolean isYDouble = false;
     boolean isYInteger = false;
+    boolean isPair = false;
 
     // Default Constructor //
     public Graphing(Activity _activity){
@@ -70,6 +71,7 @@ public class Graphing {
                 main_title = "Graph 3";
                 x_title = "Distance"; // Double
                 y_title = "Average Speed"; // Double
+                isPair = true;
                 break;
         }
 
@@ -106,7 +108,7 @@ public class Graphing {
         }
     }
 
-    public void setX_axis_double(List<Double> x_axis_double) {
+    public void setX_axis_Double(List<Double> x_axis_double) {
         this.x_axis_double = (ArrayList) x_axis_double;
     }
 
@@ -169,6 +171,20 @@ public class Graphing {
 
     }
 
+    public void set_series_myPair(ArrayList<myPair> unsorted_list){
+        int n = unsorted_list.size();
+
+        values = new DataPoint[n];
+        DataPoint v;
+        for(int i = 0; i < n; i++)
+        {
+            v = new DataPoint(unsorted_list.get(i).getX(), unsorted_list.get(i).getY());
+            values[i] = v;
+            series.appendData(v,false,n,true);
+        }
+        Log.d("Pair Test", "Value" + values);
+    }
+
     public LineGraphSeries<DataPoint> getSeries() {
         return series;
     }
@@ -191,11 +207,13 @@ public class Graphing {
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(0);
         graph.getViewport().setMaxY(20);
+        Log.d("test5", "HERE!");
 
 
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setMinX(x_axis.get(0).getTime());
         graph.getViewport().setMaxX(x_axis.get(4).getTime());
+        Log.d("test6", "HERE!");
         graph.getGridLabelRenderer().setHumanRounding(false);
        // graph.getViewport().setMinX(0);
         //graph.getViewport().setMaxX(20);
@@ -205,6 +223,27 @@ public class Graphing {
         graph.getViewport().setScrollable(true); //No zoom, just scroll - X's axis//
         graph.getViewport().setScrollableY(true); //No zoom, just scroll - Y's axis//
     }
+
+    public void setGraphPair(){
+        graph.addSeries(series);
+        setTitle(main_title, x_title, y_title);
+
+        setTitle(main_title, x_title, y_title);
+        graph.getViewport().setYAxisBoundsManual(true);
+        graph.getViewport().setMinY(0);
+        graph.getViewport().setMaxY(20);
+
+
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setXAxisBoundsManual(true);
+
+        graph.getGridLabelRenderer().setHumanRounding(true);
+        graph.getViewport().setScrollable(true);
+        graph.getViewport().setScrollableY(true);
+
+    }
+
+
 
     public void setTitle(String main_title, String x_title, String y_title ){
         graph.setTitle(main_title);
