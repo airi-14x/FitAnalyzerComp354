@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         // TESTING SCENARIO: GRAPH #1 //
         // CREATE A GRAPH via Constructor + Set Labels //
 
-        /*
+
         new_graph.select_graph(1);
 
         // SETTING X-AXIS: String List via str_format_date() //
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         // DISPLAY GRAPH via set_series() //
         displaying_graph();
         time_list.clear();
-        */
+
 
         /* ==========================================================
             TO SET: Using Workout Data --> Get X values & Y Values
@@ -307,6 +307,56 @@ public class MainActivity extends AppCompatActivity {
 
                 new_graph.set_series_myPair(unsorted_list);
                 displaying_graph();
+
+
+                /* ==========================================================
+                 TO SET: Using Workout Data --> Get X values & Y Values
+                 - Extract from WorkOutSet the List<WorkOut>
+                 - Get the necessary parameters.
+                 >> UNCOMMENT OUT THESE LINES BELOW <<
+                ==========================================================
+                */
+
+                /*
+                x_axis_double.clear();
+                y_axis.clear();
+                isPair = true;
+                new_graph.select_graph(3);
+
+                WorkOutSet current_set = new WorkOutSet();
+                List<WorkOut> data = current_set.getworkOutList(); // GET list<Workout>
+
+                for (int i = 0; i < data.size(); i++) {
+                    WorkOut current_data = data.get(i);
+                    x_axis_double.add(current_data.getDistanceKm());
+                    y_axis.add(current_data.getSpeedKmhAvg());
+                }
+
+                for (int i = 0; i < x_axis_double.size(); i++) {
+                    myPair new_pair;
+                    new_pair = new myPair(x_axis_double.get(i), y_axis.get(i));
+                    unsorted_list.add(new_pair);
+                    Log.d("Test3", "Value" + unsorted_list.get(i).getX());
+                }
+
+                Comparator<myPair> comparator = new Comparator<myPair>() {
+                    @Override
+                    public int compare(myPair myPair, myPair t1) {
+                        return myPair.getX().compareTo(t1.getX());
+                    }
+                };
+
+                Collections.sort(unsorted_list, comparator);
+
+                for (int i = 0; i < x_axis_double.size(); i++) {
+                    Log.d("Test4.1", "Value" + unsorted_list.get(i).getX());
+                    Log.d("Test4.2", "Value" + unsorted_list.get(i).getY());
+                }
+
+                new_graph.set_series_myPair(unsorted_list);
+                displaying_graph();
+                */
+
                 break;
 
         }
