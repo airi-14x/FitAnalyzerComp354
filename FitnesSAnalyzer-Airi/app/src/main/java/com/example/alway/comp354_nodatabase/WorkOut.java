@@ -1,9 +1,12 @@
 package com.example.alway.comp354_nodatabase;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class WorkOut {
+public class WorkOut implements Parcelable {
 
     @SerializedName("distance_km")
     @Expose
@@ -68,6 +71,69 @@ public class WorkOut {
         this.heartRateBpmAvg = heartRateBpmAvg;
         this.heartRateBpmMax = heartRateBpmMax;
     }
+
+    protected WorkOut(Parcel in) {
+        if (in.readByte() == 0) {
+            distanceKm = null;
+        } else {
+            distanceKm = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            sport2 = null;
+        } else {
+            sport2 = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            heartRateBpmAvg = null;
+        } else {
+            heartRateBpmAvg = in.readInt();
+        }
+        byte tmpHasPlaylist = in.readByte();
+        hasPlaylist = tmpHasPlaylist == 0 ? null : tmpHasPlaylist == 1;
+        if (in.readByte() == 0) {
+            durationSec = null;
+        } else {
+            durationSec = in.readInt();
+        }
+        byte tmpHasPoints = in.readByte();
+        hasPoints = tmpHasPoints == 0 ? null : tmpHasPoints == 1;
+        feedId = in.readString();
+        startTime = in.readString();
+        if (in.readByte() == 0) {
+            speedKmhAvg = null;
+        } else {
+            speedKmhAvg = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            heartRateBpmMax = null;
+        } else {
+            heartRateBpmMax = in.readInt();
+        }
+        name = in.readString();
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            sport = null;
+        } else {
+            sport = in.readInt();
+        }
+    }
+
+
+    public static final Creator<WorkOut> CREATOR = new Creator<WorkOut>() {
+        @Override
+        public WorkOut createFromParcel(Parcel in) {
+            return new WorkOut(in);
+        }
+
+        @Override
+        public WorkOut[] newArray(int size) {
+            return new WorkOut[size];
+        }
+    };
 
     public String getStartTime() {
         return startTime;
@@ -179,5 +245,68 @@ public class WorkOut {
 
     public void setHeartRateBpmMax(Integer heartRateBpmMax) {
         this.heartRateBpmMax = heartRateBpmMax;
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (distanceKm == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(distanceKm);
+        }
+        if (sport2 == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(sport2);
+        }
+        if (heartRateBpmAvg == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(heartRateBpmAvg);
+        }
+        dest.writeByte((byte) (hasPlaylist == null ? 0 : hasPlaylist ? 1 : 2));
+        if (durationSec == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(durationSec);
+        }
+        dest.writeByte((byte) (hasPoints == null ? 0 : hasPoints ? 1 : 2));
+        dest.writeString(feedId);
+        dest.writeString(startTime);
+        if (speedKmhAvg == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(speedKmhAvg);
+        }
+        if (heartRateBpmMax == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(heartRateBpmMax);
+        }
+        dest.writeString(name);
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(id);
+        }
+        if (sport == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(sport);
+        }
     }
 }

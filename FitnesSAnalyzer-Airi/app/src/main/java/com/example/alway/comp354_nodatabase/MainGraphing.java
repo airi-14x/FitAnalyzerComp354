@@ -14,7 +14,7 @@ import java.util.Date;
 
 public class MainGraphing extends AppCompatActivity {
 
-    //List<WorkOut> jsonData;
+
 
     static ArrayList<Integer> y_axis_int = new ArrayList<Integer>();
     static ArrayList<Double> y_axis = new ArrayList<Double>();
@@ -34,6 +34,12 @@ public class MainGraphing extends AppCompatActivity {
     static Graphing new_graph;
 
     boolean isPair = false; // For Graph #3 --> Needs the X to be in ASC order //
+    boolean isGraph1 = false;
+    boolean isGraph2 = false;
+
+    ArrayList<WorkOut> jsonData ;
+    static WorkOutSet current_set = new WorkOutSet();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +47,17 @@ public class MainGraphing extends AppCompatActivity {
         setContentView(R.layout.activity_main_graphing);
 
         Log.d("test1","is this working");
-        //jsonData = (List<WorkOut>) getIntent().getSerializableExtra("workoutData");
+
+        jsonData = getIntent().getExtras().getParcelableArrayList("workoutData");
+
+        //List<WorkOut> jsonData = getIntent().getExtras().getParcelable("workoutData");
+
+        Log.d("parcelable", "please tell me this works");
 
         //new GraphingTask().execute("Starting Graphing Task");
         new_graph = new Graphing(this);
         Log.d("test2","is this working");
+
         /*
             GRAPH #1 & GRAPH #2 are ONLY Functional if you call them one at a time from this onCreate() method.
             - The buttons do not work properly. It would take 2 - 3 minutes to render the x-axis and it will skip frames.
@@ -58,8 +70,8 @@ public class MainGraphing extends AppCompatActivity {
         // TESTING SCENARIO: GRAPH #1 //
         // CREATE A GRAPH via Constructor + Set Labels //
 
-        /*
-        new_graph.select_graph(1);
+
+        /*new_graph.select_graph(1);
 
         // SETTING X-AXIS: String List via str_format_date() //
         time_list.add(time1);
@@ -79,8 +91,8 @@ public class MainGraphing extends AppCompatActivity {
 
         // DISPLAY GRAPH via set_series() //
         displaying_graph();
-        time_list.clear();
-        */
+        time_list.clear();*/
+
 
         /* ==========================================================
             TO SET: Using Workout Data --> Get X values & Y Values
@@ -90,14 +102,19 @@ public class MainGraphing extends AppCompatActivity {
            ==========================================================
          */
 
-        /*  //to test graph 1 uncomment this block
-        new_graph.select_graph(1);
-        WorkOutSet current_set = new WorkOutSet();
-        List<WorkOut> data = current_set.getworkOutList(); // GET list<Workout>
+          //to test graph 1 uncomment this block
 
-        for(int i = 0; i < data.size(); i++)
+
+        new_graph.select_graph(1);
+        isGraph1 = true;
+        WorkOutSet current_set = new WorkOutSet();
+        //List<WorkOut> data = current_set.getworkOutList(); // GET list<Workout>
+
+        for(int i = jsonData.size() - 1; i >= 0; i--)
         {
-            WorkOut current_data = data.get(i);
+            WorkOut current_data = jsonData.get(i);
+            Log.d("Test_index", "current " + i);
+            Log.d("Test_value", "Value " + current_data.getStartTime());
             time_list.add(current_data.getStartTime());
             y_axis_int.add(current_data.getDurationSec());
         }
@@ -106,36 +123,10 @@ public class MainGraphing extends AppCompatActivity {
         new_graph.setY_axis_Integer(y_axis_int);
         displaying_graph();
         time_list.clear();
-        */
+
 
 
         // TESTING SCENARIO: GRAPH #2 //
-        // CREATE A GRAPH via Constructor + Set Labels //
-
-        /*
-        new_graph.select_graph(2);
-        //new_graph =  create_Graph(new_graph);
-
-        // SETTING X-AXIS: String List via str_format_date() //
-        time_list.add(time1);
-        time_list.add(time2);
-        time_list.add(time3);
-        time_list.add(time4);
-        time_list.add(time5);
-        new_graph.str_format_date(time_list);
-
-        // SETTING Y-AXIS: Double List //
-        y_axis.add(30.4);
-        y_axis.add(34.3);
-        y_axis.add(44.3);
-        y_axis.add(14.3);
-        y_axis.add(54.3);
-        new_graph.setY_axis_Double(y_axis);
-
-        // DISPLAY GRAPH via set_series() //
-        displaying_graph();
-        time_list.clear();
-        */
 
          /* ==========================================================
             TO SET: Using Workout Data --> Get X values & Y Values
@@ -147,12 +138,13 @@ public class MainGraphing extends AppCompatActivity {
 
         /*  //to test graph2 uncomment this block
         new_graph.select_graph(2);
-        WorkOutSet current_set = new WorkOutSet();
-        List<WorkOut> data = current_set.getworkOutList(); // GET list<Workout>
+        isGraph2 = true;
+        current_set = new WorkOutSet();
+        //List<WorkOut> data = current_set.getworkOutList(); // GET list<Workout>
 
-        for(int i = 0; i < data.size(); i++)
+        for(int i = jsonData.size() - 1; i >= 0; i--)
         {
-            WorkOut current_data = data.get(i);
+            WorkOut current_data = jsonData.get(i);
             time_list.add(current_data.getStartTime());
             y_axis.add(current_data.getDistanceKm());
         }
@@ -204,7 +196,7 @@ public class MainGraphing extends AppCompatActivity {
 
         protected void onPostExecute(String display_graph) {
             //new_graph.set_series();
-            new_graph.setGraph();
+            //new_graph.setGraph();
         }
 
 
@@ -218,96 +210,20 @@ public class MainGraphing extends AppCompatActivity {
             case R.id.graph1_radio:
                 time_list.clear();
                 y_axis_int.clear();
-                new_graph.select_graph(1);
-                time_list.add(time1);
-                time_list.add(time2);
-                time_list.add(time3);
-                time_list.add(time4);
-                time_list.add(time5);
-                new_graph.str_format_date(time_list);
-                y_axis_int.add(30);
-                y_axis_int.add(20);
-                y_axis_int.add(40);
-                y_axis_int.add(10);
-                y_axis_int.add(50);
-                new_graph.setY_axis_Integer(y_axis_int);
 
-                Log.d("test1", "Value" + time_list.get(0));
-                Log.d("test2", "Value" + y_axis_int.get(0));
-                //new GraphingTask().execute("Currently graphing..");
-                //new_graph.set_series();
-                //new_graph.setGraph();
-                displaying_graph();
+                //displaying_graph();
                 time_list.clear();
                 break;
 
             case R.id.graph2_radio:
                 time_list.clear();
                 y_axis.clear();
-                new_graph.select_graph(2);
-                time_list.add(time1);
-                time_list.add(time2);
-                time_list.add(time3);
-                time_list.add(time4);
-                time_list.add(time5);
-                new_graph.str_format_date(time_list);
-                y_axis.add(30.4);
-                y_axis.add(34.3);
-                y_axis.add(44.3);
-                y_axis.add(14.3);
-                y_axis.add(54.3);
-                new_graph.setY_axis_Double(y_axis);
-                Log.d("test1", "Value" + time_list.get(0));
-                Log.d("test2", "Value" + y_axis.get(0));
-                //new GraphingTask().execute("Currently graphing..");
-                displaying_graph();
-                //new_graph.set_series();
-                //new_graph.setGraph();
                 time_list.clear();
                 break;
 
 
                 //comment this block and uncomment the next one
             case R.id.graph3_radio:
-                x_axis_double.clear();
-                y_axis.clear();
-                isPair = true;
-                new_graph.select_graph(3);
-                x_axis_double.add(10.4337);
-                x_axis_double.add(2.4567);
-                x_axis_double.add(1.3543);
-                x_axis_double.add(11.5314);
-                x_axis_double.add(12.1135);
-
-                y_axis.add(8.1456);
-                y_axis.add(3.1541);
-                y_axis.add(1.5731);
-                y_axis.add(4.5413);
-                y_axis.add(6.7540);
-
-                for (int i = 0; i < x_axis_double.size(); i++) {
-                    myPair new_pair;
-                    new_pair = new myPair(x_axis_double.get(i), y_axis.get(i));
-                    unsorted_list.add(new_pair);
-                    Log.d("Test3", "Value" + unsorted_list.get(i).getX());
-                }
-
-                Comparator<myPair> comparator = new Comparator<myPair>() {
-                    @Override
-                    public int compare(myPair myPair, myPair t1) {
-                        return myPair.getX().compareTo(t1.getX());
-                    }
-                };
-
-                Collections.sort(unsorted_list, comparator);
-
-                for (int i = 0; i < x_axis_double.size(); i++) {
-                    Log.d("Test4.1", "Value" + unsorted_list.get(i).getX());
-                    Log.d("Test4.2", "Value" + unsorted_list.get(i).getY());
-                }
-
-                new_graph.set_series_myPair(unsorted_list);
-                displaying_graph();
 
                  /* ==========================================================
                  TO SET: Using Workout Data --> Get X values & Y Values
@@ -316,13 +232,15 @@ public class MainGraphing extends AppCompatActivity {
                  >> UNCOMMENT OUT THESE LINES BELOW <<
                 ==========================================================
                 */
-                /*
+
                 x_axis_double.clear();
                 y_axis.clear();
                 isPair = true;
                 new_graph.select_graph(3);
-                WorkOutSet current_set = new WorkOutSet();
-                List<WorkOut> data = current_set.getworkOutList(); // GET list<Workout>
+                current_set = new WorkOutSet();
+                //jsonData = getIntent().getExtras().getParcelable("workoutData");
+
+                ArrayList<WorkOut> data = jsonData; // GET list<Workout>
                 for (int i = 0; i < data.size(); i++) {
                     WorkOut current_data = data.get(i);
                     x_axis_double.add(current_data.getDistanceKm());
@@ -347,7 +265,7 @@ public class MainGraphing extends AppCompatActivity {
                 }
                 new_graph.set_series_myPair(unsorted_list);
                 displaying_graph();
-                */
+
                 break;
         }
 
@@ -364,9 +282,15 @@ public class MainGraphing extends AppCompatActivity {
                     if (isPair) {
                         new_graph.setGraphPair();
                         isPair = false;
-                    } else {
+                    } else if (isGraph1) {
                         new_graph.set_series();
-                        new_graph.setGraph();
+                        new_graph.setGraph1();
+                        isGraph1 = false;
+                    }
+                    else if (isGraph2){
+                        new_graph.set_series();
+                        new_graph.setGraph2();
+                        isGraph2 = false;
                     }
 
                 } catch (final Exception ex) {

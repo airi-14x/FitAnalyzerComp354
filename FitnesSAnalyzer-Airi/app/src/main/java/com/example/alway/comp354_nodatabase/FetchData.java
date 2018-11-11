@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,7 +31,7 @@ public class FetchData extends AppCompatActivity {
     TextView output;
     Call<WorkOutSet> call;
 
-    List <WorkOut> jsonData;  //this is what is passed to Airi
+    ArrayList <WorkOut> jsonData;  //this is what is passed to Airi
 
     Gson gson=new Gson();
 
@@ -69,9 +69,11 @@ public class FetchData extends AppCompatActivity {
         graph.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(FetchData.this, MainGraphing.class);
-                //intent.putExtra("workoutData", (Serializable) jsonData);
-                FetchData.this.startActivity(intent);
+              Intent intent = new Intent(FetchData.this,MainGraphing.class);
+              //Bundle bundle = new Bundle();
+             // bundle.putParcelableArrayList("workoutData",  jsonData);
+                intent.putExtra("workoutData",jsonData);
+              FetchData.this.startActivity(intent);
             }
         });
 

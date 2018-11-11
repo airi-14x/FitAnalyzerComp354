@@ -77,15 +77,24 @@ public class Graphing {
 
     // List of Strings with date format //
     public void str_format_date(List<String> string_dates){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        ArrayList<String> string_dates_edit = new ArrayList<String>();
+
+        for(int i = 0; i < string_dates.size(); i++)
+        {
+            string_dates_edit.add(string_dates.get(i).substring(0,20)); // Parse the dates //
+            Log.d("current date", string_dates_edit.get(i));
+        }
 
         Date new_date = null;
         clearX();
         current_date_values.clear();
-        for(int i = 0; i < string_dates.size(); i++)
+        for(int i = 0; i < string_dates_edit.size(); i++)
         {
             try{
-                new_date = sdf.parse(string_dates.get(i));
+                new_date = sdf.parse(string_dates_edit.get(i));
+                Log.d("current date2", string_dates_edit.get(i));
                 current_date_values.add(new_date);
                 //x_axis.add(new_date);
             }
@@ -191,7 +200,7 @@ public class Graphing {
         return graph;
     }
 
-    public void setGraph() {
+    public void setGraph1() {
         graph.addSeries(series);
         Log.d("test3", "HERE!");
 
@@ -199,18 +208,18 @@ public class Graphing {
         Log.d("test4", "HERE!");
         //graph.getViewport().setMinX(x_axis.get(0).getTime());
         //graph.getViewport().setMaxX(x_axis.get(2).getTime());
-        //graph.getGridLabelRenderer().setNumHorizontalLabels(5);
+        graph.getGridLabelRenderer().setNumHorizontalLabels(5);
 
         setTitle(main_title, x_title, y_title);
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(0);
-        graph.getViewport().setMaxY(20);
+        graph.getViewport().setMaxY(25000);
         Log.d("test5", "HERE!");
 
 
         graph.getViewport().setXAxisBoundsManual(true);
-        graph.getViewport().setMinX(x_axis.get(0).getTime());
-        graph.getViewport().setMaxX(x_axis.get(4).getTime());
+        //graph.getViewport().setMinX(x_axis.get(0).getTime());
+        //graph.getViewport().setMaxX(x_axis.get(12).getTime());
         Log.d("test6", "HERE!");
         graph.getGridLabelRenderer().setHumanRounding(false);
         // graph.getViewport().setMinX(0);
@@ -221,6 +230,29 @@ public class Graphing {
         graph.getViewport().setScrollable(true); //No zoom, just scroll - X's axis//
         graph.getViewport().setScrollableY(true); //No zoom, just scroll - Y's axis//
     }
+
+    public void setGraph2(){
+
+        graph.addSeries(series);
+        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(activity.getApplicationContext()));
+        //graph.getGridLabelRenderer().setNumHorizontalLabels(5);
+
+        setTitle(main_title, x_title, y_title);
+        graph.getViewport().setYAxisBoundsManual(true);
+        graph.getViewport().setMinY(0);
+        graph.getViewport().setMaxY(200);
+
+        graph.getViewport().setXAxisBoundsManual(true);
+        //graph.getViewport().setMinX(x_axis.get(0).getTime());
+        //graph.getViewport().setMaxX(x_axis.get(12).getTime());
+
+        graph.getGridLabelRenderer().setHumanRounding(false);
+        graph.getViewport().setScrollable(true);
+        graph.getViewport().setScrollableY(true);
+
+    }
+
+
 
     public void setGraphPair(){
         graph.addSeries(series);

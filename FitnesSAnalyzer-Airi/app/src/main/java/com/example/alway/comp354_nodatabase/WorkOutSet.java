@@ -2,20 +2,20 @@ package com.example.alway.comp354_nodatabase;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class WorkOutSet {
 
     @SerializedName("data")
-    private List<WorkOut> data;
+    private ArrayList<WorkOut> data;
     @SerializedName("more")
     private Boolean more;
 
-    public List<WorkOut> getworkOutList() {
+    public ArrayList<WorkOut> getworkOutList() {
         return data;
     }
 
-    public void setData(List<WorkOut> data) {
+    public void setData(ArrayList<WorkOut> data) {
         this.data = data;
     }
 

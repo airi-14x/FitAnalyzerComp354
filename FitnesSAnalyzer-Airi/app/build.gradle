@@ -31,7 +31,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
@@ -47,4 +46,6 @@ dependencies {
     implementation files('libs/converter-gson-2.4.0.jar')
     implementation files('libs/okio-1.14.0.jar')
     implementation 'com.jjoe64:graphview:4.2.2'
+
+
 }
