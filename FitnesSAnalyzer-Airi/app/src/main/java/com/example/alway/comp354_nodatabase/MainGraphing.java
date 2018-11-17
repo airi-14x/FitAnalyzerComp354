@@ -31,7 +31,9 @@ public class MainGraphing extends AppCompatActivity {
     static ArrayList<String> time_list = new ArrayList<String>();
     static ArrayList<myPair> unsorted_list = new ArrayList<myPair>();
 
-    static Graphing new_graph;
+    //static Graphing new_graph;
+    static Graphing new_graph_1;
+    static Graphing new_graph_2;
 
     boolean isPair = false; // For Graph #3 --> Needs the X to be in ASC order //
     boolean isGraph1 = false;
@@ -55,7 +57,9 @@ public class MainGraphing extends AppCompatActivity {
         Log.d("parcelable", "please tell me this works");
 
         //new GraphingTask().execute("Starting Graphing Task");
-        new_graph = new Graphing(this);
+        //new_graph = new Graphing(this);
+        new_graph_1 = new Graphing(this);
+        new_graph_2 = new Graphing(this);
         Log.d("test2","is this working");
 
         /*
@@ -105,7 +109,8 @@ public class MainGraphing extends AppCompatActivity {
           //to test graph 1 uncomment this block
 
 
-        new_graph.select_graph(1);
+        new_graph_1.select_graph(1);
+        //new_graph.select_graph(1);
         isGraph1 = true;
         WorkOutSet current_set = new WorkOutSet();
         //List<WorkOut> data = current_set.getworkOutList(); // GET list<Workout>
@@ -119,10 +124,12 @@ public class MainGraphing extends AppCompatActivity {
             y_axis_int.add(current_data.getDurationSec());
         }
 
-        new_graph.str_format_date(time_list);
-        new_graph.setY_axis_Integer(y_axis_int);
+        new_graph_1.str_format_date(time_list);
+        new_graph_1.setY_axis_Integer(y_axis_int);
+        //new_graph.str_format_date(time_list);
+        //new_graph.setY_axis_Integer(y_axis_int);
         displaying_graph();
-        time_list.clear();
+        //time_list.clear();
 
 
 
@@ -136,8 +143,10 @@ public class MainGraphing extends AppCompatActivity {
            ==========================================================
          */
 
-        /*  //to test graph2 uncomment this block
-        new_graph.select_graph(2);
+         //to test graph2 uncomment this block
+
+        new_graph_2.select_graph(2);
+        //new_graph.select_graph(2);
         isGraph2 = true;
         current_set = new WorkOutSet();
         //List<WorkOut> data = current_set.getworkOutList(); // GET list<Workout>
@@ -145,15 +154,20 @@ public class MainGraphing extends AppCompatActivity {
         for(int i = jsonData.size() - 1; i >= 0; i--)
         {
             WorkOut current_data = jsonData.get(i);
-            time_list.add(current_data.getStartTime());
+            Log.d("Time_Value_2", time_list.get(i));
+            //time_list.add(current_data.getStartTime()); // Using same Time List as before.
             y_axis.add(current_data.getDistanceKm());
+            Log.d("Current_Distance", "Value " + current_data.getDistanceKm());
         }
 
-        new_graph.str_format_date(time_list);
-        new_graph.setY_axis_Double(y_axis);
+        new_graph_2.str_format_date(time_list);
+        new_graph_2.setY_axis_Double(y_axis);
+
+        //new_graph.str_format_date(time_list);
+        //new_graph.setY_axis_Double(y_axis);
         displaying_graph();
         time_list.clear();
-        */
+
 
 
         /* GRAPH #3 Runs with the Button */
@@ -162,6 +176,7 @@ public class MainGraphing extends AppCompatActivity {
         // CREATE A GRAPH via Constructor + Set Labels //
         //new_graph = new Graphing(this);
         //new_graph.select_graph(3);
+
 
     }
 
@@ -182,7 +197,7 @@ public class MainGraphing extends AppCompatActivity {
             //y_axis_int.add(50);
             //new_graph.str_format_date(time_list);
             //new_graph.setY_axis_Integer(y_axis_int);
-            new_graph.set_series();
+            new_graph_1.set_series();
             //publishProgress(new_graph);
             //new_graph.setGraph();
             Log.d("test2", "Value2");
@@ -203,7 +218,7 @@ public class MainGraphing extends AppCompatActivity {
     }
 
 
-    public void select_button(View v) {
+    /*public void select_button(View v) {
 
         switch (v.getId()) {
 
@@ -232,7 +247,7 @@ public class MainGraphing extends AppCompatActivity {
                  >> UNCOMMENT OUT THESE LINES BELOW <<
                 ==========================================================
                 */
-
+/*
                 x_axis_double.clear();
                 y_axis.clear();
                 isPair = true;
@@ -269,7 +284,7 @@ public class MainGraphing extends AppCompatActivity {
                 break;
         }
 
-    }
+    }*/
 
     private void displaying_graph() {
         new Thread() {
@@ -280,16 +295,16 @@ public class MainGraphing extends AppCompatActivity {
 
                 try {
                     if (isPair) {
-                        new_graph.setGraphPair();
+                        new_graph_1.setGraphPair();
                         isPair = false;
                     } else if (isGraph1) {
-                        new_graph.set_series();
-                        new_graph.setGraph1();
+                        new_graph_1.set_series();
+                        new_graph_1.setGraph1();
                         isGraph1 = false;
                     }
                     else if (isGraph2){
-                        new_graph.set_series();
-                        new_graph.setGraph2();
+                        new_graph_2.set_series();
+                        new_graph_2.setGraph2();
                         isGraph2 = false;
                     }
 

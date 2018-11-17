@@ -48,20 +48,22 @@ public class Graphing {
     // USER chooses which graph to display //
     public void select_graph(int choice){
         // All graph one but different labels for x and y axis to set//
-        graph = (GraphView)this.activity.findViewById(R.id.graph1);
+        //graph = (GraphView)this.activity.findViewById(R.id.graph1);
         switch(choice){
 
             case 1:
+                graph = (GraphView)this.activity.findViewById(R.id.graph1);
                 main_title = "Graph 1";
                 x_title = "Start Time"; // String
-                y_title = "Duration"; // Integer
+                y_title = "Duration (Sec)"; // Integer
                 isYInteger = true;
                 break;
 
             case 2:
+                graph = (GraphView)this.activity.findViewById(R.id.graph2);
                 main_title = "Graph 2";
                 x_title = "Start Time"; // String
-                y_title = "Average Speed"; //Double
+                y_title = "Distance (KM)"; //Double
                 isYDouble = true;
                 break;
 
@@ -240,7 +242,7 @@ public class Graphing {
         setTitle(main_title, x_title, y_title);
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(0);
-        graph.getViewport().setMaxY(200);
+        graph.getViewport().setMaxY(230);
 
         graph.getViewport().setXAxisBoundsManual(true);
         //graph.getViewport().setMinX(x_axis.get(0).getTime());

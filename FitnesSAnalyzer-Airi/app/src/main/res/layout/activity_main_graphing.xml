@@ -10,6 +10,22 @@
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph1"
         android:layout_width="0dp"
+        android:layout_height="220dp"
+        android:layout_marginBottom="33dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph2"
+        android:layout_width="0dp"
+        android:layout_height="220dp"
+        android:layout_marginBottom="33dp"
+        app:layout_constraintTop_toBottomOf="@id/graph1"
+        />
+
+    <!--<com.jjoe64.graphview.GraphView
+        android:id="@+id/graph1"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="33dp"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup"
@@ -55,6 +71,7 @@
             tools:layout_editor_absoluteX="31dp"
             tools:layout_editor_absoluteY="397dp" />
     </RadioGroup>
+    -->
 
 
 </android.support.constraint.ConstraintLayout>
