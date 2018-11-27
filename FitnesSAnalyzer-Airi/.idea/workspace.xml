@@ -40,18 +40,10 @@
       <file leaf-file-name="MainGraphing.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/alway/comp354_nodatabase/MainGraphing.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="159" column="79" selection-start-line="159" selection-start-column="79" selection-end-line="159" selection-end-column="79" />
+            <state relative-caret-position="-1295">
+              <caret line="14" selection-start-line="14" selection-end-line="319" selection-end-column="1" />
               <folding>
-                <element signature="e#428#437#0" expanded="true" />
-                <element signature="e#492#500#0" expanded="true" />
-                <element signature="e#554#560#0" expanded="true" />
-                <element signature="e#622#630#0" expanded="true" />
-                <element signature="e#925#933#0" expanded="true" />
-                <element signature="e#995#1003#0" expanded="true" />
                 <element signature="method#doInBackground#0;class#GraphingTask#0;class#MainGraphing#0" />
-                <element signature="e#9996#10836#0" expanded="true" />
-                <element signature="e#10835#10836#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -60,8 +52,8 @@
       <file leaf-file-name="Graphing.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/alway/comp354_nodatabase/Graphing.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2827">
-              <caret line="244" column="38" selection-start-line="244" selection-start-column="38" selection-end-line="244" selection-end-column="38" />
+            <state relative-caret-position="936">
+              <caret line="289" lean-forward="true" selection-start-line="119" selection-start-column="4" selection-end-line="289" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -71,13 +63,13 @@
       </file>
       <file leaf-file-name="activity_main_graphing.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_graphing.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+            </state>
+          </provider>
           <provider editor-type-id="android-designer2">
             <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
-            </state>
           </provider>
         </entry>
       </file>
@@ -2375,6 +2367,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -2397,9 +2392,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2545,7 +2537,7 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info anchor="bottom" id="Android Profiler" order="7" />
+      <window_info anchor="bottom" id="Android Profiler" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32965517" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
@@ -2556,13 +2548,12 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.32965517" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="7" visible="true" weight="0.3034483" />
+      <window_info anchor="bottom" id="Logcat" order="7" weight="0.3034483" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24959612" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.32991454" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Build" order="7" weight="0.32965517" />
       <window_info anchor="right" id="Gradle" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Device File Explorer" order="3" side_tool="true" />
@@ -2575,6 +2566,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -2588,18 +2580,70 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/alway/comp354_nodatabase/MainGraphing.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2250">
+          <caret line="159" column="79" selection-start-line="159" selection-start-column="79" selection-end-line="159" selection-end-column="79" />
+          <folding>
+            <element signature="method#doInBackground#0;class#GraphingTask#0;class#MainGraphing#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/alway/comp354_nodatabase/Graphing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="960">
+          <caret line="77" column="5" lean-forward="true" selection-start-line="48" selection-start-column="4" selection-end-line="77" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_graphing.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/alway/comp354_nodatabase/MainGraphing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2385">
+          <caret line="159" column="79" selection-start-line="159" selection-start-column="79" selection-end-line="159" selection-end-column="79" />
+          <folding>
+            <element signature="method#doInBackground#0;class#GraphingTask#0;class#MainGraphing#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/alway/comp354_nodatabase/Graphing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3405">
+          <caret line="244" column="38" selection-start-line="244" selection-start-column="38" selection-end-line="244" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_graphing.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/alway/comp354_nodatabase/MainGraphing.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2415">
           <caret line="205" column="4" selection-start-line="205" selection-start-column="4" selection-end-line="205" selection-end-column="4" />
           <folding>
-            <element signature="e#428#437#0" expanded="true" />
-            <element signature="e#492#500#0" expanded="true" />
-            <element signature="e#554#560#0" expanded="true" />
-            <element signature="e#622#630#0" expanded="true" />
-            <element signature="e#925#933#0" expanded="true" />
-            <element signature="e#995#1003#0" expanded="true" />
             <element signature="method#doInBackground#0;class#GraphingTask#0;class#MainGraphing#0" />
-            <element signature="e#9996#10836#0" expanded="true" />
-            <element signature="e#10835#10836#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2615,13 +2659,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_graphing.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" selection-start-line="18" selection-end-line="18" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/alway/comp354_nodatabase/MainGraphing.java">
@@ -2629,15 +2673,7 @@
         <state relative-caret-position="1875">
           <caret line="125" selection-start-line="125" selection-end-line="125" />
           <folding>
-            <element signature="e#428#437#0" expanded="true" />
-            <element signature="e#492#500#0" expanded="true" />
-            <element signature="e#554#560#0" expanded="true" />
-            <element signature="e#622#630#0" expanded="true" />
-            <element signature="e#925#933#0" expanded="true" />
-            <element signature="e#995#1003#0" expanded="true" />
             <element signature="method#doInBackground#0;class#GraphingTask#0;class#MainGraphing#0" />
-            <element signature="e#9996#10836#0" expanded="true" />
-            <element signature="e#10835#10836#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2681,19 +2717,19 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_graphing.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+        </state>
+      </provider>
       <provider editor-type-id="android-designer2">
         <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/alway/comp354_nodatabase/Graphing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2827">
-          <caret line="244" column="38" selection-start-line="244" selection-start-column="38" selection-end-line="244" selection-end-column="38" />
+        <state relative-caret-position="936">
+          <caret line="289" lean-forward="true" selection-start-line="119" selection-start-column="4" selection-end-line="289" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2702,18 +2738,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/alway/comp354_nodatabase/MainGraphing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="159" column="79" selection-start-line="159" selection-start-column="79" selection-end-line="159" selection-end-column="79" />
+        <state relative-caret-position="-1295">
+          <caret line="14" selection-start-line="14" selection-end-line="319" selection-end-column="1" />
           <folding>
-            <element signature="e#428#437#0" expanded="true" />
-            <element signature="e#492#500#0" expanded="true" />
-            <element signature="e#554#560#0" expanded="true" />
-            <element signature="e#622#630#0" expanded="true" />
-            <element signature="e#925#933#0" expanded="true" />
-            <element signature="e#995#1003#0" expanded="true" />
             <element signature="method#doInBackground#0;class#GraphingTask#0;class#MainGraphing#0" />
-            <element signature="e#9996#10836#0" expanded="true" />
-            <element signature="e#10835#10836#0" expanded="true" />
           </folding>
         </state>
       </provider>
